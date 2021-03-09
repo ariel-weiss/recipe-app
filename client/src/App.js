@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from '@material-ui/core';
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 
-import Home from './components/Home/Home';
+import RecipePage from './components/RecipePage/RecipePage';
 import Navbar from './components/Navbar/Navbar';
-import ViewRecipe from './components/ViewRecipe/ViewRecipe';
+import ViewRecipes from './components/ViewRecipes/ViewRecipes';
+import MyRecipes from './components/MyRecipes/MyRecipes';
 import Auth from './components/Auth/Auth';
 
 import useStyles from './styles';
@@ -12,14 +13,18 @@ import useStyles from './styles';
 function App() {
   
   const classes = useStyles();
-  
+  const [chosenRecipe, setChosenRecipe] = useState({});
+  useEffect(() => {
+    setChosenRecipe(chosenRecipe);
+  }, [chosenRecipe])
   return (
     <BrowserRouter>
             <Container maxwidth='lg'>
                 <Navbar />
                 <Switch>
-                    <Route path='/' exact component={Home} />
-                    <Route path='/recipe' exact component={ViewRecipe} />
+          <Route path='/' exact render={() => (<ViewRecipes setChosenRecipe={setChosenRecipe}/>)} />
+          <Route path='/recipe' exact render={() => (<RecipePage recipe={chosenRecipe}/>)} />
+                    <Route path='/recipes' exact component={MyRecipes} />
                     <Route path='/auth' exact component={Auth} />
                 </Switch>
             </Container>

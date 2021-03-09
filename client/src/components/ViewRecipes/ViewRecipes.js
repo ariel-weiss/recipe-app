@@ -1,10 +1,10 @@
-import { Button, Card, CircularProgress, Grid, InputAdornment, TextField } from '@material-ui/core';
+import { Button, Card, CircularProgress, Grid, Grow, InputAdornment, TextField } from '@material-ui/core';
 import React, { useEffect,useState } from 'react';
 
 import Recipe from './Recipe/Recipe';
 import useStyles from './styles';
 
-const ViewRecipe = () => {
+const ViewRecipes = ({setChosenRecipe}) => {
     const classes = useStyles();
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState('');
@@ -29,7 +29,8 @@ const ViewRecipe = () => {
       e.preventDefault();
       setQuery(search);
       setSearch('');
-    }; 
+  }; 
+  
 
     return (
         <div>
@@ -48,18 +49,20 @@ const ViewRecipe = () => {
                 <Button className={classes.searchButton} variant="contained" color="primary" type='submit'>Search</Button>
                 </Card>
             </form>
-            
+            <Grow in>
             {recipes.length < 1 ? <CircularProgress /> :
                 <Grid className={classes.container} container alignItems='stretch' spacing={3}>
                 {recipes.map((recipeObj) => (
                     <Grid key={recipeObj.label} item xs={12} sm={6}>
-                        <Recipe key={ recipeObj.recipe.label } recipe={ recipeObj.recipe }/>
+                    <Recipe key={recipeObj.recipe.label} recipe={recipeObj.recipe} setChosenRecipe={ setChosenRecipe }/>
                     </Grid>
                 ))}
+              
             </Grid>
             }
+          </Grow>
         </div>
     )
 }
 
-export default ViewRecipe;
+export default ViewRecipes;

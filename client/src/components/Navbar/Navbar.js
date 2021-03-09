@@ -10,7 +10,7 @@ const Navbar = () => {
         <AppBar className={classes.navBar} position='sticky' color='inherit'>
             <Breadcrumbs>
                 <Typography className={classes.heading} component={Link} to='/'  variant='h6' >Home</Typography>
-                <Typography className={classes.heading} component={Link} to='/auth'  variant='h6' >My Recipes</Typography>
+                <Typography className={classes.heading} component={Link} to='/recipes'  variant='h6' >My Recipes</Typography>
                 <Typography className={classes.heading} component={Link} to='/'  variant='h6' >About</Typography>
             </Breadcrumbs>
                 <Toolbar className={classes.toolbar}>
