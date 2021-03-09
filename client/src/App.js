@@ -1,19 +1,27 @@
+import React from 'react';
+import { Container } from '@material-ui/core';
+import { BrowserRouter , Switch, Route } from 'react-router-dom';
 
 import './App.css';
+import Home from './components/Home/Home';
+import Navbar from './components/Navbar/Navbar';
+import ViewRecipe from './components/ViewRecipe/ViewRecipe';
+import Auth from './components/Auth/Auth';
 
 function App() {
-  const APP_ID = '69c8cf17';
-  const APP_KEY = '991ab8eb9fa41a1e9c59fac61b7edb4e';
-  const QUERY = 'chicken';
-  const request_template = `https://api.edamam.com/search?q=${QUERY}&app_id=${APP_ID}&app_key=${APP_KEY}`;
+  
   
   return (
-    <div className="App">
-      <form className='search-form'>
-        <input className='search-bar' type='text' />
-        <button className='search-button' type='submit'>Search</button>
-      </form>
-    </div>
+    <BrowserRouter>
+            <Container maxwidth='lg'>
+                <Navbar />
+                <Switch>
+                    <Route path='/' exact component={Home} />
+                    <Route path='/recipe' exact component={ViewRecipe} />
+                    <Route path='/auth' exact component={Auth} />
+                </Switch>
+            </Container>
+        </BrowserRouter>
   );
 }
 
