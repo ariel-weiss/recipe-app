@@ -2,14 +2,16 @@ import React from 'react';
 import { Container } from '@material-ui/core';
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 
-import './App.css';
 import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import ViewRecipe from './components/ViewRecipe/ViewRecipe';
 import Auth from './components/Auth/Auth';
 
+import useStyles from './styles';
+
 function App() {
   
+  const classes = useStyles();
   
   return (
     <BrowserRouter>
