@@ -1,13 +1,19 @@
-import { FETCH_RECIPES } from './recipeTypes';
+import * as types from './recipeTypes';
 
 const initState = {
-    recipes: []
+    loading: false,
+    recipes: [],
+    errorMsg: ''
 };
 
 export const recipeReducer = (state = initState, action) => {
     switch (action.type) {
-        case FETCH_RECIPES:
-            return { recipes: action.payload };
+        case types.FETCH_RECIPES_REQUEST:
+            return { loading: true, recipes: [], errorMsg: '' };
+        case types.FETCH_RECIPES_SUCCESS:
+            return { loading: false, recipes: action.payload, errorMsg: '' };
+        case types.FETCH_RECIPES_ERROR:
+            return { loading: false, recipes: [], errorMsg: action.payload };
         default:
             return state;
     }
