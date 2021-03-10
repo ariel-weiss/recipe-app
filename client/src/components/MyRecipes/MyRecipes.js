@@ -1,7 +1,7 @@
 import React from 'react'
 
 const MyRecipes = () => {
-    const user = null;
+    //const user = null;
     
     return (
         <div>

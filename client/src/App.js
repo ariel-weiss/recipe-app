@@ -9,12 +9,12 @@ import ViewRecipes from './components/ViewRecipes/ViewRecipes';
 import MyRecipes from './components/MyRecipes/MyRecipes';
 import Auth from './components/Auth/Auth';
 
-import useStyles from './styles';
+//import useStyles from './styles';
 import store from './redux/store';
 
 function App() {
   
-  const classes = useStyles();
+  //const classes = useStyles();
   const [chosenRecipe, setChosenRecipe] = useState({});
   useEffect(() => {
     setChosenRecipe(chosenRecipe);

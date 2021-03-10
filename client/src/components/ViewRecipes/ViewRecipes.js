@@ -1,5 +1,5 @@
 import { Button, Card, CircularProgress, Grid, Grow, InputAdornment, TextField } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { fetchRecipes } from '../../redux/Recipe/recpieActions';
@@ -51,9 +51,9 @@ const ViewRecipes = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-      loading: state.loading,
-      recipes: state.recipes,
-      errorMsg: state.errorMsg
+      loading: state.recipe.loading,
+      recipes: state.recipe.recipes,
+      errorMsg: state.recipe.errorMsg
   };
 };
 const mapDispatchToProps = (dispatch) => {
