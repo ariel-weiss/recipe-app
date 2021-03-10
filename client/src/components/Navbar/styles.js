@@ -17,6 +17,6 @@ export default makeStyles((theme) => ({
     toolbar: {
         display: 'flex',
         justifyContent: 'flex-end',
-        width: '40px',
+        width: '160px',
       },
 }));

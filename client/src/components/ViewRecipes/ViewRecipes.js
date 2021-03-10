@@ -1,29 +1,26 @@
 import { Button, Card, CircularProgress, Grid, Grow, InputAdornment, TextField } from '@material-ui/core';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
+import { fetchRecipes } from '../../redux/Recipe/recpieActions';
 import Recipe from './Recipe/Recipe';
 import useStyles from './styles';
 
-const ViewRecipes = ({setChosenRecipe}) => {
-    const classes = useStyles();
-    const [recipes, setRecipes] = useState([]);
-    const [search, setSearch] = useState('');
-    const [query, setQuery] = useState('banana');
-  const request_template = `http://localhost:5000/recipes/${query}`;
-  
-    useEffect(()=>{
-      getRecipes();
-    }, [query])
+const ViewRecipes = (props) => {
+  const classes = useStyles();
+  const [search, setSearch] = useState('');
+  const initialQuery = 'banana';
 
-    const getRecipes = async () => { 
-      const response = await fetch(request_template);
-      const data = await response.json();
-      setRecipes(data);
-    };
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      setQuery(search);
-      setSearch('');
+  //Show some results on load:
+  // useEffect(() => {
+  //   //props.fetchRecipes(initialQuery);
+  // }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.fetchRecipes(search);
+    //setQuery(search);
+    setSearch('');
   }; 
   
 
@@ -45,11 +42,11 @@ const ViewRecipes = ({setChosenRecipe}) => {
                 </Card>
             </form>
             <Grow in>
-            {(!recipes || recipes.length < 1) ? <CircularProgress /> :
+            {(!props.recipes || props.recipes.length < 1) ? <CircularProgress /> :
                 <Grid className={classes.container} container alignItems='stretch' spacing={3}>
-                {recipes.map((recipeObj) => (
+                {props.recipes.map((recipeObj) => (
                     <Grid key={recipeObj.label} item xs={8} sm={4}>
-                    <Recipe key={recipeObj.recipe.label} recipe={recipeObj.recipe} setChosenRecipe={ setChosenRecipe }/>
+                    <Recipe key={recipeObj.recipe.label} recipe={recipeObj.recipe} setChosenRecipe={ props.setChosenRecipe }/>
                     </Grid>
                 ))}
               
@@ -60,4 +57,18 @@ const ViewRecipes = ({setChosenRecipe}) => {
     )
 }
 
-export default ViewRecipes;
+const mapStateToProps = (state) => {
+  return {
+      recipes: state.recipes
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+      fetchRecipes: (query) => dispatch(fetchRecipes(query))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ViewRecipes);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from '@material-ui/core';
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import RecipePage from './components/RecipePage/RecipePage';
 import Navbar from './components/Navbar/Navbar';
@@ -9,6 +10,7 @@ import MyRecipes from './components/MyRecipes/MyRecipes';
 import Auth from './components/Auth/Auth';
 
 import useStyles from './styles';
+import store from './redux/store';
 
 function App() {
   
@@ -18,6 +20,7 @@ function App() {
     setChosenRecipe(chosenRecipe);
   }, [chosenRecipe])
   return (
+    <Provider store={store}>
     <BrowserRouter>
             <Container maxwidth='lg'>
                 <Navbar />
@@ -28,7 +31,8 @@ function App() {
                     <Route path='/auth' exact component={Auth} />
                 </Switch>
             </Container>
-        </BrowserRouter>
+      </BrowserRouter>
+      </Provider>
   );
 }
 
