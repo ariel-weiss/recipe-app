@@ -16,8 +16,8 @@ const Recipe = ({ recipe, setChosenRecipe }) => {
                 <Typography variant='h6'>{ recipe.label }</Typography>
             </div>
             <div className={classes.details}>
-                <Typography variant='body2' color='textSecondary'>Calories: {recipe.calories}</Typography>
-                <Button variant="contained" color='secondary' onClick={handleOpenRecipe}><Link to='/recipe'>Open</Link></Button>
+                <Typography variant='body2' color='textSecondary'>Calories: {Number(recipe.calories).toFixed(2)}</Typography>
+                <Button variant="contained" color='secondary' size='small' onClick={handleOpenRecipe}><Link to='/recipe'>Open</Link></Button>
             </div>
         </Card>
     )

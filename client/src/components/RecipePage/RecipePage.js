@@ -1,27 +1,33 @@
 import React from 'react'
 import { Button, Card, CardMedia, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+
+import useStyles from './styles.js';
 
 const RecipePage = ({ recipe }) => {
-    console.log(recipe);
+    const classes = useStyles();
+    const handleAddRecipe = () => { };
     return recipe ? (
-        <Card >
-            <CardMedia  image={recipe.image} title={recipe.label} />
-            <div>
-                <Typography variant='h6'>{ recipe.label }</Typography>
+        <Card className={classes.card}>
+            <CardMedia className={classes.media} image={recipe.image}  />
+            <div className={classes.overlay}>
+                <Typography variant='h4'>{recipe.label}</Typography>
+                <Typography variant='body2'>Calories: { Number(recipe.calories).toFixed(2) }</Typography>
             </div>
-            <ol>
+            <div className={classes.overlay2}>
+                <Button variant="contained" color='secondary' size='small' onClick={handleAddRecipe}><Link to='/recipes'>Add to my recipes</Link></Button>
+            </div>
+            
+            <ol >
                 {recipe.ingredients.map(ingredient => (
                     <li>{ ingredient.text }</li>
                 ))}
             </ol>
-            <div >
-                <Typography variant='body2' color='textSecondary'>Calories: {recipe.calories}</Typography>
-                <Button variant="contained" color='secondary'>Open</Button>
-            </div>
         </Card>
         
         
-    ) : "Choose Recipe"
+    ) :
+        <Card><Typography variant='h6'>Choose Recipe</Typography></Card>
 }
 
 export default RecipePage
