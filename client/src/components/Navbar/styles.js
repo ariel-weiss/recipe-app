@@ -14,6 +14,16 @@ export default makeStyles((theme) => ({
     heading: {
         
     },
+    logo: {
+        display: 'flex',
+        justifyContent: 'flex-begin',
+        border: '1px solid black',
+        width: '10%',
+        height: 'auto',
+        padding: '10px 0 50px',
+        marginRight: '2px',
+        borderRadius: '40%',
+    },
     toolbar: {
         display: 'flex',
         justifyContent: 'flex-end',

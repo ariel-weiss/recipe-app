@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const app = express();
+const mongoose = require('mongoose');
 const fetch = require('node-fetch');
 const { query } = require('express');
 
+const app = express();
 
 const APP_ID = '69c8cf17';
 const APP_KEY = '991ab8eb9fa41a1e9c59fac61b7edb4e';
@@ -31,4 +32,12 @@ app.get('/recipes/:query', (req, res) => {
     }
 });
 
-app.listen(5000, () => console.log('Start listening on 5000'));
+const CONNECTION_URL = 'mongodb+srv://arielweiss:arielweiss1234@cluster0.mak0s.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const PORT = process.env.PORT || 5000;
+const mongoOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+
+mongoose.connect(CONNECTION_URL, mongoOptions)
+  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+  .catch((error) => console.log(`${error} did not connect`));
+
+mongoose.set('useFindAndModify', false);
