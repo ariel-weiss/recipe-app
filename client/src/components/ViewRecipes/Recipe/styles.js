@@ -48,5 +48,9 @@ export default makeStyles({
       padding: '0 16px 8px 16px',
       display: 'flex',
       justifyContent: 'space-between',
-    },
+  },
+  openButton: {
+    color: 'rgba(255,255,255, 1)',
+    textDecoration: 'none',
+  },
   });

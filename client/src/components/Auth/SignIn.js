@@ -3,21 +3,20 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Card } from '@material-ui/core';
+import { GoogleLogin }from 'react-google-login';
+import LoginIcon from './loginIcon';
 
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+   
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -40,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn({setIsRegistered,handleGoogleSuccess, handleGoogleError,handleSubmit,handleChange}) {
   const classes = useStyles();
 
   return (
@@ -51,8 +50,21 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign in 
         </Typography>
+         <GoogleLogin
+                    clientId="899926147664-st9gcasq097h481khp17et9s411g1npk.apps.googleusercontent.com"
+                    render={(renderProps) => (
+                        <Button className={classes.submit} component={Link} to='/auth' variant='contained' fullWidth color="primary" onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<LoginIcon />} >
+                            Sign in using google
+                        </Button>
+                    )}
+                onSuccess={handleGoogleSuccess}
+                onFailure={handleGoogleError}
+                cookiePolicy="single_host_origin"
+         />
+        
+        OR
         <form className={classes.form} noValidate>
           <TextField
             variant="outlined"
@@ -64,6 +76,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleChange}
           />
           <TextField
             variant="outlined"
@@ -75,10 +88,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            onChange={handleChange}
           />
           <Button
             type="submit"
@@ -86,6 +96,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Sign In
           </Button>
@@ -94,13 +105,14 @@ export default function SignIn() {
             </Grid>
             <Grid item>
             <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="secondary"
             className={classes.submit2}
+            onClick={() => setIsRegistered(registered => !registered)}
           >
-            Doesn't have an account? Sign Up
+            Register
           </Button>
             </Grid>
           </Grid>
@@ -109,3 +121,4 @@ export default function SignIn() {
     </Container>
   );
 }
+

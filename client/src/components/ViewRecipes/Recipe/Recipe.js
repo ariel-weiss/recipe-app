@@ -17,7 +17,7 @@ const Recipe = ({ recipe, setChosenRecipe }) => {
             </div>
             <div className={classes.details}>
                 <Typography variant='body2' color='textSecondary'>Calories: {Number(recipe.calories).toFixed(2)}</Typography>
-                <Button variant="contained" color='secondary' size='small' onClick={handleOpenRecipe}><Link to='/recipe'>Open</Link></Button>
+                <Button variant="contained" color='secondary' size='small' onClick={handleOpenRecipe}><Link to='/recipe' className={classes.openButton}>Open</Link></Button>
             </div>
         </Card>
     )

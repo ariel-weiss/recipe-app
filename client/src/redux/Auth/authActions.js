@@ -1,4 +1,4 @@
-import { AUTH } from './authTypes';
+import { AUTH, LOGOUT } from './authTypes';
 
 export const signIn = (formData, router) => async (dispatch) => {
   try {
@@ -27,5 +27,11 @@ export const signUp = (formData, router) => async (dispatch) => {
 export const googleAuth = (data) => {
   return {
     type: AUTH, data: data
+  };
+}
+
+export const logOut = () => {
+  return {
+    type: LOGOUT
   };
 }

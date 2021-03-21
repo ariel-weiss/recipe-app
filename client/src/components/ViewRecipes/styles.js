@@ -31,11 +31,11 @@ export default makeStyles((theme) => ({
   },
   searchBar: {
     background: 'white',
-    border: '1px',
-    borderRadius: 15,
-    
+    borderRadius: 2,
   },
   searchButton: {
-    borderRadius: 10,
+    borderRadius: 15,
+    borderTopRightRadius: 15,
+    borderBottomRightRadius: 15,
   }
 }));

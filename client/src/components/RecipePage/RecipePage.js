@@ -15,7 +15,7 @@ const RecipePage = ({ recipe }) => {
                 <Typography variant='body2'>Calories: { Number(recipe.calories).toFixed(2) }</Typography>
             </div>
             <div className={classes.overlay2}>
-                <Button variant="contained" color='secondary' size='small' onClick={handleAddRecipe}><Link to='/recipes'>Add to my recipes</Link></Button>
+                <Button variant="contained" color='secondary' size='small' onClick={handleAddRecipe}><Link to='/recipes' className={classes.openButton}>Add to my recipes</Link></Button>
             </div>
             
             <ol >
