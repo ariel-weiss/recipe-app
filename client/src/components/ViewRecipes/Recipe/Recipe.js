@@ -7,7 +7,9 @@ import useStyles from './styles';
 const Recipe = ({ recipe, setChosenRecipe }) => {
     const classes = useStyles();
     const handleOpenRecipe = () => {
-        setChosenRecipe(recipe);
+        if(setChosenRecipe){
+            setChosenRecipe(recipe);
+        }
       }
     return (
         <Card className={classes.card}>

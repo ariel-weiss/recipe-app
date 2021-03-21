@@ -3,18 +3,17 @@ import { Container } from '@material-ui/core';
 import { BrowserRouter , Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import RecipePage from './components/RecipePage/RecipePage';
 import Navbar from './components/Navbar/Navbar';
-import ViewRecipes from './components/ViewRecipes/ViewRecipes';
-import MyRecipes from './components/MyRecipes/MyRecipes';
-import Auth from './components/Auth/Auth';
+import RecipePage from './components/Pages/RecipePage/RecipePage';
+import MyRecipesPage from './components/Pages/MyRecipesPage/MyRecipesPage';
+import GeneralRecipesPage from './components/Pages/GeneralRecipesPage/GeneralRecipesPage';
+import AuthPage from './components/Pages/AuthPage/AuthPage';
+import AboutPage from './components/Pages/AboutPage/AboutPage';
 
-//import useStyles from './styles';
 import store from './redux/store';
 
 function App() {
   
-  //const classes = useStyles();
   const [chosenRecipe, setChosenRecipe] = useState({});
   useEffect(() => {
     setChosenRecipe(chosenRecipe);
@@ -25,10 +24,11 @@ function App() {
             <Container maxwidth='lg'>
                 <Navbar />
                 <Switch>
-          <Route path='/' exact render={() => (<ViewRecipes setChosenRecipe={setChosenRecipe}/>)} />
-          <Route path='/recipe' exact render={() => (<RecipePage recipe={chosenRecipe}/>)} />
-                    <Route path='/recipes' exact component={MyRecipes} />
-                    <Route path='/auth' exact component={Auth} />
+                    <Route path='/' exact render={() => (<GeneralRecipesPage setChosenRecipe={setChosenRecipe}/>)} />
+                    <Route path='/recipe' exact render={() => (<RecipePage recipe={chosenRecipe}/>)} />
+                    <Route path='/recipes' exact component={MyRecipesPage} />
+                    <Route path='/auth' exact component={AuthPage} />
+                    <Route path='/about' exact component={AboutPage} />
                 </Switch>
             </Container>
       </BrowserRouter>

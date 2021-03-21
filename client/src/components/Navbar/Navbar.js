@@ -39,7 +39,7 @@ const Navbar = (props) => {
             <Breadcrumbs>
                 <Typography className={classes.heading} component={Link} to='/'  variant='h6' >Home</Typography>
                 <Typography className={classes.heading} component={Link} to='/recipes'  variant='h6' >My Recipes</Typography>
-                <Typography className={classes.heading} component={Link} to='/'  variant='h6' >About</Typography>
+                <Typography className={classes.heading} component={Link} to='/about'  variant='h6' >About</Typography>
             </Breadcrumbs>
 
             {/* <div class={classes.vline}></div> */}

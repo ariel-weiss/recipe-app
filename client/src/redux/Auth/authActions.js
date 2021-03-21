@@ -1,24 +1,24 @@
 import { AUTH, LOGOUT } from './authTypes';
 
-export const signIn = (formData, router) => async (dispatch) => {
+export const signIn = (formData, history) => async (dispatch) => {
   try {
     // const { data } = await api.signIn(formData);
 
     // dispatch({ type: AUTH, data });
 
-    router.push('/');
+    history.push('/');
   } catch (error) {
     console.log(error);
   }
 };
 
-export const signUp = (formData, router) => async (dispatch) => {
+export const signUp = (formData, history) => async (dispatch) => {
   try {
     // const { data } = await api.signUp(formData);
 
     // dispatch({ type: AUTH, data });
 
-    router.push('/');
+    history.push('/');
   } catch (error) {
     console.log(error);
   }

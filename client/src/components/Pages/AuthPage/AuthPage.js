@@ -2,7 +2,7 @@ import { Grow } from '@material-ui/core';
 import React, {useState} from 'react'
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
-import { googleAuth } from '../../redux/Auth/authActions';
+import { googleAuth, signIn, signUp } from '../../../redux/Auth/authActions';
 
 import SignIn from './SignIn';
 import SignUp from './SignUp';
@@ -15,7 +15,7 @@ const initForm = {
     password: ''
 };
   
-const Auth = (props) => {
+const AuthPage = (props) => {
     const [isRegistered, setIsRegistered] = useState(false);
     const [formData, setFormData] = useState(initForm);
     const history = useHistory();
@@ -39,6 +39,11 @@ const Auth = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
+        if (isRegistered) {
+            props.signIn(formData, history);
+        } else {
+            props.signUp(formData, history);
+        }
     };
 
     const handleChange = (e) => {
@@ -64,11 +69,13 @@ const mapStateToProps = (state) => {
   };
   const mapDispatchToProps = (dispatch) => {
     return {
-        googleAuth: (data) => dispatch(googleAuth(data))
+        googleAuth: (data) => dispatch(googleAuth(data)),
+        signIn: (data,router) => dispatch(signIn(data,router)),
+        signUp: (data,router) => dispatch(signUp(data,router)),
     };
   };
   
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Auth);
+  )(AuthPage);

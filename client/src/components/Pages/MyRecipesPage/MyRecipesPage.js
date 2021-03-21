@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import ViewRecipes from '../../ViewRecipes/ViewRecipes';
 
-const MyRecipes = () => {
+const MyRecipesPage = () => {
     //const classes = useStyles();
     //const history = useHistory();
     const location = useLocation();
@@ -17,11 +18,11 @@ const MyRecipes = () => {
     return (
         <div>
             {user ? 
-                <h2 style={{ color: 'white' }}>You don't have any saved recipes yet.</h2>
+                <ViewRecipes />
                 :
                 <h2 style={{ color: 'white' }}>You must be logged in!</h2>}
         </div>
     )
 }
 
-export default MyRecipes
+export default MyRecipesPage
