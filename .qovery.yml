@@ -1,0 +1,11 @@
+---
+application:
+  name: "recipe-app"
+  project: "Recipes-App"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-recipe-app"
+  routes:
+  - application_name: "recipe-app"
+    paths:
+    - "/*"
