@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -55,11 +55,11 @@ export default function SignUp({setIsRegistered,handleSubmit,handleChange}) {
             <Grid item xs={12} >
               <TextField
                 autoComplete="fname"
-                name="fullName"
+                name="name"
                 variant="outlined"
                 required
                 fullWidth
-                id="fullName"
+                id="name"
                 label="Full Name"
                 autoFocus
                 onChange={handleChange}

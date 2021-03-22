@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 5000;
 const mongoOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
 mongoose.connect(process.env.DB_CONNECTION_URL, mongoOptions)
-  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+  .then(() => app.listen(PORT, () => console.log(`Server Running on Port ${PORT}, Mongo OK`)))
   .catch((error) => console.log(`${error} did not connect`));
 
 mongoose.set('useFindAndModify', false);

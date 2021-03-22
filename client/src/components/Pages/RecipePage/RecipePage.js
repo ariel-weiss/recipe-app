@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Button, Card, CardMedia, Typography } from '@material-ui/core';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import useStyles from './styles.js';
 import { addUserRecipe } from '../../../redux/User/userActions.js';

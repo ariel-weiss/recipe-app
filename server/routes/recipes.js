@@ -17,7 +17,6 @@ router.get('/search/:query', (req, res) => {
         fetch(recipeRequest)
             .then(res => res.json())
             .then(json => {
-                console.log('Fetch OK');
                 data = json.hits;
                 res.status(200).json(data);
             })
@@ -34,7 +33,7 @@ router.get('/all',verify, async (req, res) => {
     res.json(recipes);    
 });
 
-router.post('/add', verify, async (req, res) => {
+router.patch('/add', verify, async (req, res) => {
     if (!req.userId) return res.json({ message: "User not authenticated" });
     const recipe = req.body;
     // Add single recipe for the user

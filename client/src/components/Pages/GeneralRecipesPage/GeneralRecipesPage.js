@@ -10,7 +10,9 @@ const GeneralRecipesPage = (props) => {
     const [query, setQuery] = useState('');
 
     useEffect(() => {
-        props.fetchRecipes(query);
+        if (query && query !== ''){
+            props.fetchRecipes(query);
+        }
     }, [query])
 
     return (

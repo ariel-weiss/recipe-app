@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ViewRecipes from '../../ViewRecipes/ViewRecipes';
 import { fetchUserRecipes } from '../../../redux/User/userActions';
 
 const MyRecipesPage = (props) => {
-    //const classes = useStyles();
-    //const history = useHistory();
     const location = useLocation();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     
@@ -18,7 +16,9 @@ const MyRecipesPage = (props) => {
     }, [location]);
 
     useEffect(() => {
-        props.fetchRecipes();
+        if(user){
+            props.fetchRecipes();
+        }
     }, []);
 
     return (

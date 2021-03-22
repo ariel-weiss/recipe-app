@@ -4,8 +4,7 @@ import * as api from '../api';
 export const fetchUserRecipes = () => async (dispatch) => {
     dispatch({ type: types.FETCH_USER_RECIPES_REQUEST });
     try {
-        console.log('Dispatching by ID!');
-        const data = await api.fetchUserRecipesAPI();
+        const { data } = await api.fetchUserRecipesAPI();
         if (data?.message) {
             throw (data);
         }
@@ -18,8 +17,13 @@ export const fetchUserRecipes = () => async (dispatch) => {
 export const addUserRecipe = (recipe,history) => async (dispatch) => {
     dispatch({ type: types.ADD_RECIPE_REQUEST });
     try {
-        console.log('Dispatching ADD RECIPE');
-        const data = await api.addRecipeAPI(recipe);
+        const recipeObject = {
+            image: recipe.image,
+            label: recipe.label,
+            calories: recipe.calories,
+            ingredients: recipe.ingredients
+        };
+        const data = await api.addRecipeAPI({recipe: recipeObject});
         dispatch({ type: types.ADD_RECIPE_SUCCESS, payload: data });
         history.push('/recipes');
     } catch (error) {

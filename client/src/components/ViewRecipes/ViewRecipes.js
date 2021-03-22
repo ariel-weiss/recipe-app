@@ -19,7 +19,7 @@ const ViewRecipes = (props) => {
           <h2 style={{ color: 'white' }}>Oops... You haven't add any recipes yet!</h2>
       );
   };
-  
+    //console.log(props.recipes);
     return (
         <Grow in>
         {props.errorMsg ? errorHeading() :
@@ -37,11 +37,12 @@ const ViewRecipes = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const currentState = ownProps.general ? state.recipe : state.user;
   return {
-      loading: state.recipe.loading,
-      recipes: state.recipe.recipes,
-      errorMsg: state.recipe.errorMsg
+      loading: currentState.loading,
+      recipes: currentState.recipes,
+      errorMsg: currentState.errorMsg
   };
 };
 

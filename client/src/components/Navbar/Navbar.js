@@ -2,12 +2,11 @@ import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { AppBar, Typography, Toolbar, Button, Breadcrumbs } from '@material-ui/core';
-import { GoogleLogin } from 'react-google-login';
 import Avatar from '@material-ui/core/Avatar';
 
 import useStyles from './styles';
 
-import { googleAuth, logOut } from '../../redux/Auth/authActions';
+import { logOut } from '../../redux/Auth/authActions';
 
 
 const Navbar = (props) => {

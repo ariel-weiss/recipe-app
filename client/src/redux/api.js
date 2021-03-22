@@ -1,56 +1,20 @@
 import axios from 'axios';
 
-// const API = axios.create({ baseURL: 'https://memories-backend.zeet.app' });
+const API = axios.create({ baseURL: 'http://localhost:5000/' });
 
-// API.interceptors.request.use((req) => {
-//   if (localStorage.getItem('profile')) {
-//     req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
-//   }
+API.interceptors.request.use((req) => {
+    if (localStorage.getItem('profile')) {
+        const token = JSON.parse(localStorage.getItem('profile')).token;
+        req.headers.Authorization = `Bearer ${token}`;
+  }
 
-//   return req;
-// });
+  return req;
+});
 
-export const fetchGeneralRecipesAPI = (query) => {
-    const request_url = `http://localhost:5000/recipes/search/${query}`;
-    const data = axios.get(request_url)
-        .then((res) => {
-            //console.log(res.data);
-            return res.data;
-        })
-        .catch((error) => {
-            console.log(error);
-            return null;
-        });
-    return data;
-};
+export const fetchGeneralRecipesAPI = (query) => API.get(`/recipes/search/${query}`);
+export const fetchUserRecipesAPI = () => API.get('/recipes/all');
+export const addRecipeAPI = (recipe) => API.patch('/recipes/add',recipe);
 
-export const fetchUserRecipesAPI = () => {
-    const request_url = `http://localhost:5000/recipes/all`;
-    const data = axios.get(request_url)
-        .then((res) => {
-            console.log(res);
-            return res.data;
-        })
-        .catch((error) => {
-            console.log(error);
-            return null;
-        });
-    return data;
-};
 
-export const addRecipeAPI = (recipe) => {
-    const request_url = `http://localhost:5000/recipes/add`;
-    const data = axios.post(request_url,recipe)
-        .then((res) => {
-            console.log(res);
-            return res.data;
-        })
-        .catch((error) => {
-            console.log(error);
-            return null;
-        });
-    return data;
-};
-
-// export const signInAPI = (formData) => API.post('/user/signin', formData);
-// export const signUpAPI = (formData) => API.post('/user/signup', formData);
+export const signInAPI = (formData) => API.post('/users/signin', formData);
+export const signUpAPI = (formData) => API.post('/users/signup', formData);

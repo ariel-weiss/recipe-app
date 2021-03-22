@@ -10,18 +10,18 @@ import SignUp from './SignUp';
 
 
 const initForm = {
-    fullName: '',
+    name: '',
     email: '',
     password: ''
 };
   
 const AuthPage = (props) => {
-    const [isRegistered, setIsRegistered] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(true);
     const [formData, setFormData] = useState(initForm);
     const history = useHistory();
     
     const handleGoogleSuccess = async (res) => {
-        console.log(res);
+        //console.log(res);
         const result = res?.profileObj;
         const token = res?.tokenId;
         try {
@@ -38,7 +38,7 @@ const AuthPage = (props) => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        //console.log(formData);
         if (isRegistered) {
             props.signIn(formData, history);
         } else {
