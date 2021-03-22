@@ -24,7 +24,7 @@ const MyRecipesPage = (props) => {
     return (
         <div>
             {user ? 
-                <ViewRecipes />
+                <ViewRecipes setChosenRecipe={ props.setChosenRecipe }/>
                 :
                 <h2 style={{ color: 'white' }}>You must be logged in!</h2>}
         </div>

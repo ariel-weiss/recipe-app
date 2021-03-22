@@ -24,11 +24,11 @@ const ViewRecipes = (props) => {
         <Grow in>
         {props.errorMsg ? errorHeading() :
           (props.loading ? <CircularProgress /> :
-            (!props.recipes ) ? emptyCollectionHeading() :
+            (!props.recipes || props.recipes.length < 1) ? emptyCollectionHeading() :
                 <Grid className={classes.container} container alignItems='stretch' spacing={3}>
                 {props.recipes.map((recipeObj) => (
                   <Grid key={recipeObj.label} item xs={8} sm={4}>
-                    <Recipe key={recipeObj.recipe.label} recipe={recipeObj.recipe} setChosenRecipe={props.setChosenRecipe} notAdded={props.general}/>
+                    <Recipe key={recipeObj.recipe.label} id={recipeObj?._id} recipe={recipeObj.recipe} setChosenRecipe={props.setChosenRecipe} notAdded={props.general}/>
                   </Grid>
                 ))}
                 </Grid>)

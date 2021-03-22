@@ -22,6 +22,13 @@ export const userReducer = (state = initState, action) => {
         case types.ADD_RECIPE_ERROR:
             return { ...state, loading: false, errorMsg: action.payload };
         
+        case types.REMOVE_RECIPE_REQUEST:
+            return { ...state, loading: true, errorMsg: '' };
+        case types.REMOVE_RECIPE_SUCCESS:
+            return { ...state, loading: false, errorMsg: '' };
+        case types.REMOVE_RECIPE_ERROR:
+            return { ...state, loading: false, errorMsg: action.payload };
+        
         default:
             return state;
     }

@@ -21,7 +21,7 @@ export const addUserRecipe = (recipe,history) => async (dispatch) => {
             image: recipe.image,
             label: recipe.label,
             calories: recipe.calories,
-            ingredients: recipe.ingredients
+            ingredients: [...recipe.ingredients]
         };
         const data = await api.addRecipeAPI({recipe: recipeObject});
         dispatch({ type: types.ADD_RECIPE_SUCCESS, payload: data });
@@ -29,5 +29,17 @@ export const addUserRecipe = (recipe,history) => async (dispatch) => {
     } catch (error) {
         console.log(error);
         dispatch({ type: types.ADD_RECIPE_ERROR, payload: error });
+    }    
+}
+
+export const removeUserRecipe = (recipeId,history) => async (dispatch) => {
+    dispatch({ type: types.REMOVE_RECIPE_REQUEST });
+    try {
+        await api.removeRecipeAPI({recipeId});
+        dispatch({ type: types.REMOVE_RECIPE_SUCCESS });
+        history.push('/recipes');
+    } catch (error) {
+        console.log(error);
+        dispatch({ type: types.REMOVE_RECIPE_ERROR, payload: error });
     }    
 }

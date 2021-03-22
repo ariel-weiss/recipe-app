@@ -26,7 +26,7 @@ function App() {
                 <Switch>
                     <Route path='/' exact render={() => (<GeneralRecipesPage setChosenRecipe={setChosenRecipe}/>)} />
                     <Route path='/recipe' exact render={() => (<RecipePage recipe={chosenRecipe}/>)} />
-                    <Route path='/recipes' exact component={MyRecipesPage} />
+                    <Route path='/recipes' exact render={() => (<MyRecipesPage setChosenRecipe={setChosenRecipe}/>)} />
                     <Route path='/auth' exact component={AuthPage} />
                     <Route path='/about' exact component={AboutPage} />
                 </Switch>

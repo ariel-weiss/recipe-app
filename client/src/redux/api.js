@@ -14,6 +14,7 @@ API.interceptors.request.use((req) => {
 export const fetchGeneralRecipesAPI = (query) => API.get(`/recipes/search/${query}`);
 export const fetchUserRecipesAPI = () => API.get('/recipes/all');
 export const addRecipeAPI = (recipe) => API.patch('/recipes/add',recipe);
+export const removeRecipeAPI = (recipeId) => API.patch('/recipes/remove',recipeId);
 
 
 export const signInAPI = (formData) => API.post('/users/signin', formData);

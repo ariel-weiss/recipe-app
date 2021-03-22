@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import SearchRecipe from '../../SearchRecipe/SearchRecipe';
 import ViewRecipes from '../../ViewRecipes/ViewRecipes';
 
-import { fetchGeneralRecipes } from '../../../redux/Recipe/recpieActions';
+import { fetchGeneralRecipes } from '../../../redux/Recipe/recipeActions';
 
 const GeneralRecipesPage = (props) => {
     const [query, setQuery] = useState('');

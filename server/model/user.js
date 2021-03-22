@@ -5,7 +5,7 @@ const recipeSchema = mongoose.Schema({
     image: { type: String },
     label: { type: String, required: true },
     calories: { type: Number, required: true },
-    ingredients: [String],
+    ingredients: [Object],
     id: { type: String },
   }
 });

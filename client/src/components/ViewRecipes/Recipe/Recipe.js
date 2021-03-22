@@ -4,11 +4,11 @@ import React from 'react';
 
 import useStyles from './styles';
 
-const Recipe = ({ recipe, setChosenRecipe }) => {
+const Recipe = ({ id, recipe, setChosenRecipe }) => {
     const classes = useStyles();
     const handleOpenRecipe = () => {
-        if(setChosenRecipe){
-            setChosenRecipe(recipe);
+        if (setChosenRecipe) {
+            setChosenRecipe({...recipe, id});
         }
       }
     return (
