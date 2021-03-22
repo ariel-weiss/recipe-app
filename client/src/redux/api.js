@@ -11,7 +11,7 @@ import axios from 'axios';
 // });
 
 export const fetchGeneralRecipesAPI = (query) => {
-    const request_url = `http://localhost:5000/recipes/${query}`;
+    const request_url = `http://localhost:5000/recipes/search/${query}`;
     const data = axios.get(request_url)
         .then((res) => {
             //console.log(res.data);
@@ -38,11 +38,11 @@ export const fetchUserRecipesAPI = () => {
     return data;
 };
 
-export const addRecipeAPI = (userId,recipe) => {
-    const request_url = `http://localhost:5000/recipes/add/${userId}`;
+export const addRecipeAPI = (recipe) => {
+    const request_url = `http://localhost:5000/recipes/add`;
     const data = axios.post(request_url,recipe)
         .then((res) => {
-            //console.log(res.data);
+            console.log(res);
             return res.data;
         })
         .catch((error) => {

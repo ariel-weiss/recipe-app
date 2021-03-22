@@ -12,7 +12,7 @@ router.post('/signin', async (req, res) => {
         const isPasswordValid = await bcrypt.compare(password, existingUser.password);
         if (!isPasswordValid) return res.status(404).json({ message: 'Wrong email or password' });
 
-        const token = jwt.sign({ id: existingUser._id }, 'testSecret', { expiresIn: "1h" });
+        const token = jwt.sign({ id: existingUser._id }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
         res.status(200).json({ result: existingUser, token: token });
         
     } catch (error) {
@@ -28,7 +28,7 @@ router.post('/signup', async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
         const result = await User.create({ email, password: hashedPassword, name });
-        const token = jwt.sign({ id: result._id }, 'testSecret', { expiresIn: "1h" });
+        const token = jwt.sign({ id: result._id }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
 
         res.status(200).json({ result, token });
         

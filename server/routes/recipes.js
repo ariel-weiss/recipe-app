@@ -9,7 +9,7 @@ const APP_ID = '69c8cf17';
 const APP_KEY = '991ab8eb9fa41a1e9c59fac61b7edb4e';
 const generateRequest = (query) => (`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
 // Routes
-router.get('/:query', (req, res) => {
+router.get('/search/:query', (req, res) => {
     const { query } = req.params;
     const recipeRequest = generateRequest(query);
     let data = {};

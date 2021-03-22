@@ -7,26 +7,28 @@ import useStyles from './styles';
 
 const ViewRecipes = (props) => {
   const classes = useStyles();
-  const emptyCollectionHeading = () => {
-    if (props.general){
+  const errorHeading = () => {
       return (
-        <h2 style={{ color: 'white' }}>Try to search for ingredients you like 😁🍏🍌</h2>
+        <p style={{ color: 'yellow' }}>Some error occurred : {props.errorMsg.message}</p>
       );
-    };
-    return (
-      <h2 style={{ color: 'white' }}>Oops... You haven't add any recipes yet!</h2>
+  };
+  const emptyCollectionHeading = () => {
+      return (props.general ?
+          <h2 style={{ color: 'white' }}>Try to search for ingredients you like 😁🍏🍌</h2>
+          :
+          <h2 style={{ color: 'white' }}>Oops... You haven't add any recipes yet!</h2>
       );
   };
   
     return (
         <Grow in>
-        {props.errorMsg ? <h2>Some error occurred : {props.errorMsg.message}</h2> :
+        {props.errorMsg ? errorHeading() :
           (props.loading ? <CircularProgress /> :
-            !props.recipes ? emptyCollectionHeading() :
+            (!props.recipes ) ? emptyCollectionHeading() :
                 <Grid className={classes.container} container alignItems='stretch' spacing={3}>
                 {props.recipes.map((recipeObj) => (
                   <Grid key={recipeObj.label} item xs={8} sm={4}>
-                    <Recipe key={recipeObj.recipe.label} recipe={recipeObj.recipe} setChosenRecipe={props.general? props.setChosenRecipe: null} notAdded={props.general}/>
+                    <Recipe key={recipeObj.recipe.label} recipe={recipeObj.recipe} setChosenRecipe={props.setChosenRecipe} notAdded={props.general}/>
                   </Grid>
                 ))}
                 </Grid>)
@@ -44,5 +46,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  null
 )(ViewRecipes);
