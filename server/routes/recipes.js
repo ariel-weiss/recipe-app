@@ -54,7 +54,7 @@ router.patch('/add', verify, async (req, res) => {
 router.patch('/remove', verify, async (req, res) => {
     if (!req.userId) return res.json({ message: "User not authenticated" });
     const {recipeId} = req.body;
-    if (!mongoose.Types.ObjectId.isValid(recipeId)) return res.status(404).send(`No recipe with id: ${id}`);
+    if (!mongoose.Types.ObjectId.isValid(recipeId)) return res.status(404).json({message :`No recipe with id: ${id}`});
     
     User.findByIdAndUpdate(
         req.userId,
