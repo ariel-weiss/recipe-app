@@ -21,10 +21,17 @@ export const signUp = (formData, history) => async (dispatch) => {
   }
 };
 
-export const googleAuth = (data) => {
-  return {
-    type: AUTH, data: data
-  };
+export const googleSignIn = (googleData, history) => async (dispatch) => {
+  
+  try {
+    const { data } = await api.googleSignInAPI({
+      name: googleData.result.name, email: googleData.result.email, token: googleData.token
+    });
+    dispatch({ type: AUTH, data: { ...data, imageUrl: googleData.result.imageUrl } });
+    history.push('/');
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export const logOut = () => {

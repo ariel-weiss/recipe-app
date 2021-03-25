@@ -19,7 +19,7 @@ const ViewRecipes = (props) => {
           <h2 style={{ color: 'white' }}>Oops... You haven't add any recipes yet!</h2>
       );
   };
-    //console.log(props.recipes);
+    
     return (
         <Grow in>
         {props.errorMsg ? errorHeading() :
@@ -27,7 +27,7 @@ const ViewRecipes = (props) => {
             (!props.recipes || props.recipes.length < 1) ? emptyCollectionHeading() :
                 <Grid className={classes.container} container alignItems='stretch' spacing={3}>
                 {props.recipes.map((recipeObj) => (
-                  <Grid key={recipeObj.label} item xs={8} sm={4}>
+                  <Grid key={recipeObj.recipe.label} item xs={8} sm={4}>
                     <Recipe key={recipeObj.recipe.label} id={recipeObj?._id} recipe={recipeObj.recipe} setChosenRecipe={props.setChosenRecipe} notAdded={props.general}/>
                   </Grid>
                 ))}

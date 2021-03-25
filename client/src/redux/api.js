@@ -18,4 +18,5 @@ export const removeRecipeAPI = (recipeId) => API.patch('/recipes/remove',recipeI
 
 
 export const signInAPI = (formData) => API.post('/users/signin', formData);
+export const googleSignInAPI = (googleData) => API.post('/users/google/signin', googleData);
 export const signUpAPI = (formData) => API.post('/users/signup', formData);

@@ -6,12 +6,14 @@ const verify = async (req, res, next) => {
         const token = req.headers.authorization.split(" ")[1];
         const isCustomAuth = token.length < 500;
         let decodedData;
+        console.log(req);
         if (token && isCustomAuth) {
             decodedData = jwt.verify(token, process.env.TOKEN_SECRET);
-            req.userId = decodedData?.id;
+            req.userEmail = decodedData?.email;
         } else {
             decodedData = jwt.decode(token);
-            req.userId = decodedData?.sub;
+            console.log(decodedData);
+            req.userEmail = decodedData?.email;
         }
     } catch (error) {
         console.log(error);

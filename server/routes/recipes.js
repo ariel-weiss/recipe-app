@@ -26,18 +26,18 @@ router.get('/search/:query', (req, res) => {
 });
 
 router.get('/all',verify, async (req, res) => {
-    if (!req.userId) return res.json({ message: "User not authenticated" });
-    if (!mongoose.Types.ObjectId.isValid(req.userId)) return res.status(404).send('No user with this ID');
-    const user = await User.findById(req.userId);
+    if (!req.userEmail) return res.json({ message: "User not authenticated" });
+    const user = await User.findOne({ email: req.userEmail });
     const recipes = user.recipes;
-    res.json(recipes);    
+    res.json(recipes);
 });
 
 router.patch('/add', verify, async (req, res) => {
-    if (!req.userId) return res.json({ message: "User not authenticated" });
+    if (!req.userEmail) return res.json({ message: "User not authenticated" });
     const recipeObj = req.body;
-    User.findByIdAndUpdate(
-        req.userId, 
+    
+    User.findOneAndUpdate(
+        { email: req.userEmail }, 
         { $addToSet: { recipes: recipeObj } },
         { new: true },
         function(err, model){
@@ -52,12 +52,12 @@ router.patch('/add', verify, async (req, res) => {
 });
 
 router.patch('/remove', verify, async (req, res) => {
-    if (!req.userId) return res.json({ message: "User not authenticated" });
+    if (!req.userEmail) return res.json({ message: "User not authenticated" });
     const {recipeId} = req.body;
     if (!mongoose.Types.ObjectId.isValid(recipeId)) return res.status(404).json({message :`No recipe with id: ${id}`});
     
-    User.findByIdAndUpdate(
-        req.userId,
+    User.findOneAndUpdate(
+        { email: req.userEmail },
         { $pull: { recipes: { _id: recipeId } } },
         { safe: true },
         function (err, model) {

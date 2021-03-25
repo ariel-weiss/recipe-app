@@ -19,7 +19,7 @@ const RecipePage = (props) => {
         }
     };
 
-    return props.recipe ? (
+    return (props.recipe && props.recipe.ingredients) ? (
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={props.recipe.image}  />
             <div className={classes.overlay}>
@@ -36,15 +36,15 @@ const RecipePage = (props) => {
             </div>
             
             <ol >
-                {props.recipe.ingredients.map(ingredient => (
-                    <li>{ ingredient.text }</li>
+                { props.recipe.ingredients.map(ingredient => (
+                    <li key={ingredient.foodId}>{ ingredient.text }</li>
                 ))}
             </ol>
         </Card>
         
         
     ) :
-        <Card><Typography variant='h6'>Choose Recipe</Typography></Card>
+        <Typography style={{color: 'yellow'}} variant='h6'>Please choose recipe</Typography>
 }
 
 const mapDispatchToProps = (dispatch) => {

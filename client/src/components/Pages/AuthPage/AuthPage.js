@@ -2,7 +2,7 @@ import { Grow } from '@material-ui/core';
 import React, {useState} from 'react'
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
-import { googleAuth, signIn, signUp } from '../../../redux/Auth/authActions';
+import { googleSignIn, signIn, signUp } from '../../../redux/Auth/authActions';
 
 import SignIn from './SignIn';
 import SignUp from './SignUp';
@@ -21,12 +21,10 @@ const AuthPage = (props) => {
     const history = useHistory();
     
     const handleGoogleSuccess = async (res) => {
-        //console.log(res);
         const result = res?.profileObj;
         const token = res?.tokenId;
         try {
-          props.googleAuth({ result, token });
-          history.push('/');
+            props.googleSignIn({ result, token }, history);
         } catch (error) {
             console.error(error);
         }
@@ -69,7 +67,7 @@ const mapStateToProps = (state) => {
   };
   const mapDispatchToProps = (dispatch) => {
     return {
-        googleAuth: (data) => dispatch(googleAuth(data)),
+        googleSignIn: (data,router) => dispatch(googleSignIn(data,router)),
         signIn: (data,router) => dispatch(signIn(data,router)),
         signUp: (data,router) => dispatch(signUp(data,router)),
     };
